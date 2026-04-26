@@ -1,4 +1,16 @@
+# Python
+__pycache__/
 *.pyc
-env/
-data/
-venv/
+
+# Build
+build/
+dist/
+*.spec
+*.exe
+
+# Data
+*.csv
+
+# Exceptions
+!sample_data_top.csv
+!sample_data_bot.csv
