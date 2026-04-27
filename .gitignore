@@ -2,6 +2,10 @@
 __pycache__/
 *.pyc
 
+# Virtual environment
+venv/
+.env/
+
 # Build
 build/
 dist/
@@ -11,6 +15,17 @@ dist/
 # Data
 *.csv
 
+# Excel output
+*.xlsx
+
 # Exceptions
-!sample_data_top.csv
-!sample_data_bot.csv
+!sample_top.csv
+!sample_bot.csv
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
