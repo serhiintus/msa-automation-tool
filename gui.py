@@ -10,6 +10,7 @@ from PyQt6.QtWidgets import (
     QLabel,
 )
 from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
 
 
 WINDOW_WIDTH = 750
@@ -23,7 +24,7 @@ class AppGUI(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("MSA data processing")
+        self.setWindowTitle("MSA automation tool")
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.main_layout = QVBoxLayout()
         central_widget = QWidget(self)
@@ -90,8 +91,8 @@ class AppGUI(QMainWindow):
         #Get the current working directory
         current_dir = os.path.dirname(os.path.realpath(__file__))
         #Construct the file path using the current directory and the file name
-        image_path = os.path.join(current_dir, "component_pattern.png")
+        image_path = os.path.join(current_dir, "chip-intelligence-processor.png")
         pixmap = QPixmap(image_path)
-        pixmap = pixmap.scaled(450, 250)
+        pixmap = pixmap.scaled(450, 250, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
         self.pattern_image.setPixmap(pixmap)
         self.main_layout.addWidget(self.pattern_image)
