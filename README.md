@@ -113,6 +113,9 @@ msa-automation-tool/
 │ ├── sample_top.csv
 │ └── sample_bot.csv
 │
+├── tests/
+| └── test_excel_creator.py
+|
 ├── chip-intelligence-processor.png
 ├── screenshot.png
 ├── requirements.txt
@@ -143,6 +146,17 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+---
+
+## 🧪 Tests
+
+Run tests with:
+
+```bash
+pytest
+```
+
 ---
 
 ## 📊 Sample Data

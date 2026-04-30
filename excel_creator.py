@@ -3,8 +3,8 @@ import pandas as pd
 
 class ExcelCreator:
 
-    def __init__(self, df_columns = ["OffsetX", "OffsetY"], modules = 5, tests = 9) -> None:
-        self.df_columns = df_columns
+    def __init__(self, df_columns = None, modules = 5, tests = 9) -> None:
+        self.df_columns = df_columns or ["OffsetX", "OffsetY"]
         self.modules = modules
         self.tests = tests
 
@@ -17,6 +17,13 @@ class ExcelCreator:
 
     def csv_reader(self, path):
         df = pd.read_csv(path)
+
+        required_columns = ["ModuleID", "Location Name"] + self.df_columns
+
+        for col in required_columns:
+            if col not in df.columns:
+                raise ValueError(f"Missing column: {col}")
+        
         return df
     
     def data_filter(self, df, components, side):
@@ -28,14 +35,14 @@ class ExcelCreator:
                 #create filter
                 filt = (df["ModuleID"] == j + 1) & (df["Location Name"] == i)
                 #filtered data from the .csv file and add it to the temporary dataframe
-                filtered_data = pd.concat([filtered_data, df.loc[filt, self.df_columns].iloc[:9]], ignore_index=True)
+                filtered_data = pd.concat([filtered_data, df.loc[filt, self.df_columns].iloc[:self.tests]], ignore_index=True)
 
             column_mapping = {
                 self.df_columns[0]: f"{side}_{i}_X",
                 self.df_columns[1]: f"{side}_{i}_Y"
             }
             #rename the columns and update the values of the temporary dataframe
-            filtered_data = filtered_data.rename(columns=column_mapping).apply(lambda x: x/1000)
+            filtered_data = filtered_data.rename(columns=column_mapping) / 1000
             #concatenate the MSA dataframe and the temporary dataframe with renaming columns of the temporary dataframe
             self.msa_data = pd.concat([self.msa_data, filtered_data], axis=1)
 
