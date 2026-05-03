@@ -1,23 +1,58 @@
-# MSA Automation Tool
+# ⚙️ MSA Automation Tool
 
 ## 📌 Overview
 
-MSA Automation Tool is a Python desktop application designed to automate processing of raw data exported from AOI (Automated Optical Inspection) systems.
+MSA Automation Tool is a Python desktop application designed to automate processing of raw AOI (Automated Optical Inspection) data.
 
-The tool transforms raw measurement data (CSV) into a structured Excel format used for Measurement Systems Analysis (MSA), reducing manual work, minimizing errors, and improving efficiency.
+It transforms raw CSV measurement data into a structured Excel format ready for Measurement Systems Analysis (MSA), significantly reducing manual effort, minimizing human error, and improving data consistency.
+
+---
+
+## 🚀 Key Value
+
+- ⏱ Reduced data preparation time by ~50%
+- ❌ Eliminated manual filtering and sorting
+- 📊 Standardized MSA input format for Minitab
+- ⚡ One-click data transformation
+
+---
+
+## 🎯 Target Users
+
+- Process Engineers and Technician working with AOI systems  
 
 ---
 
 ## ❗ Problem
 
-Raw AOI measurement data requires manual filtering, sorting, and formatting before it can be used for MSA analysis.  
-This process is repetitive, time-consuming, and prone to human error.
+In manufacturing environments using AOI (Automated Optical Inspection), raw measurement data:
+
+- Comes in large CSV files
+- Requires manual filtering by component (designators)
+- Needs sorting by module and test iteration
+- Must be converted to millimeters
+- Must be formatted for MSA (ANOVA) in Minitab
+
+👉 This process is repetitive, time-consuming, and error-prone.
 
 ---
 
 ## ✅ Solution
 
-MSA Automation Tool eliminates manual preprocessing by automatically transforming raw AOI data into a structured format ready for statistical analysis in Minitab.
+This application:
+
+1. Loads raw AOI CSV data
+2. Filters data by selected component designators
+3. Extracts offset measurements (X, Y)
+4. Converts values to millimeters
+5. Structures data into MSA format
+6. Exports a ready-to-use Excel file
+
+---
+
+## 🖼 Application Preview
+
+![App Screenshot](screenshot.png)
 
 ---
 
@@ -35,15 +70,38 @@ MSA Automation Tool eliminates manual preprocessing by automatically transformin
 
 ---
 
-## 🚀 Features
+## 📦 Download (No Python required)
 
-- Automated filtering of AOI data (TOP and BOT sides)
-- Selection of specific component designators
-- Filtering by ModuleID and Location Name
-- Extraction of OffsetX and OffsetY measurements
-- Automatic unit conversion (µm → mm)
-- Generation of structured Excel output for MSA
-- User-friendly desktop interface (PyQt6)
+👉 **[Download MSA-Automation-Tool.exe](https://github.com/serhiintus/msa-automation-tool/releases)**
+
+---
+
+## ⚡ Quick Start
+
+```bash
+git clone https://github.com/serhiintus/msa-automation-tool.git
+cd msa-automation-tool
+pip install -r requirements.txt
+python main.py
+```
+
+---
+
+## ⚙️ Virtual Environment (Recommended)
+
+```bash
+python -m venv venv
+venv/Scripts/activate
+pip install -r requirements.txt
+```
+
+---
+
+## 🧪 Tests
+
+```bash
+pytest
+```
 
 ---
 
@@ -93,91 +151,64 @@ Workflow:
 
 ---
 
-## 🖼 Application Preview
-
-![App Screenshot](screenshot.png)
-
----
-
 ## 📂 Project Structure
 
 ```text
 msa-automation-tool/
 │
-├── main.py
-├── gui.py
-├── controller.py
-├── excel_creator.py
-│
 ├── data/
-│ ├── sample_top.csv
-│ └── sample_bot.csv
+│   ├── sample_top.csv
+│   └── sample_bot.csv
 │
 ├── tests/
-| └── test_excel_creator.py
+|   └── test_excel_creator.py
 |
+├── .gitignore
 ├── chip-intelligence-processor.png
-├── screenshot.png
+├── controller.py
+├── excel_creator.py
+├── gui.py
+├── main.py
+├── README.md
 ├── requirements.txt
-└── README.md
-```
----
-
-## ▶️ How to Run
-
-### 1. Clone repository
-```bash
-git clone https://github.com/serhiintus/msa-automation-tool.git
-cd msa-automation-tool
-```
-### 2. Create virtual environment
-```bash
-python -m venv venv
-```
-### 3. Activate
-```bash
-source venv/Scripts/activate
-```
-### 4. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-### 5. Run
-```bash
-python main.py
+└── screenshot.png
 ```
 
 ---
 
-## 🧪 Tests
+## 🛠 Tech Stack
 
-Run tests with:
-
-```bash
-pytest
-```
+- Python
+- pandas
+- PyQt6
+- pytest
+- XlsxWriter
 
 ---
 
 ## 📊 Sample Data
 
-sample_top.csv
+The repository includes example datasets:
 
-sample_bot.csv
+- `sample_top.csv`
+- `sample_bot.csv`
+
+These files can be used to test the application without requiring real AOI machine output.
 
 ---
 
-## 🧠 What I Learned
+## ⭐ Highlights
 
-- Designing modular Python applications (GUI + logic separation)
-- Working with real-world manufacturing data
-- Automating engineering workflows
-- Building user-oriented desktop tools
+- Real-world engineering problem solved with Python
+- Data processing pipeline using pandas
+- GUI application with PyQt6
+- Automated Excel report generation
+- Clean and testable code structure
 
 ---
 
 ## 👨‍💻 Author
 
-Serhii Provotorov
+**Serhii Provotorov**
 
 LinkedIn: https://www.linkedin.com/in/serhii-provotorov-5b621b1b1/
